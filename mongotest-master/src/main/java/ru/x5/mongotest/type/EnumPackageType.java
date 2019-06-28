@@ -1,4 +1,4 @@
-package ru.x5.mongotest;
+package ru.x5.mongotest.type;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;

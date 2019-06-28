@@ -1,10 +1,10 @@
-package ru.x5.mongotest;
+package ru.x5.mongotest.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import ru.x5.mongotest.type.EnumPackageType;
 
 import java.util.List;
 
@@ -12,12 +12,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Cis3 {
+public class Cis {
     String cisId;
     EnumPackageType packageType;
     String status;
     String sapHeaderId;
     String sapDetailId;
-    @DBRef
-    List<Cis3> cisList;
+    List<Cis> cisList;
 }

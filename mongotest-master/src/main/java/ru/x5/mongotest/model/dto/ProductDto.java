@@ -1,4 +1,4 @@
-package ru.x5.mongotest;
+package ru.x5.mongotest.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -5,6 +5,10 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import ru.x5.mongotest.model.Cis;
+import ru.x5.mongotest.repository.CisRepository;
+import ru.x5.mongotest.repository.ProductListRepository;
+import ru.x5.mongotest.repository.ProductRepository;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
