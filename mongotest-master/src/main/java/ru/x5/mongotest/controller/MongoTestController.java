@@ -16,8 +16,8 @@ public class MongoTestController {
     private final MongoServiceImpl mongoServiceImpl;
 
         @PostMapping(value = "/product")
-    public ProductDto createProduct(@RequestBody ProductDto productDto) {
-        return mongoServiceImpl.createProduct(productDto);
+    public void createProduct(@RequestBody ProductDto productDto) {
+        mongoServiceImpl.createProduct(productDto);
     }
 
 

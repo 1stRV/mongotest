@@ -24,12 +24,13 @@ public class MongoServiceImpl implements MongoService {
     private final CisRepository cisRepository;
 
     @Override
-    public ProductDto createProduct(ProductDto productDto) {
+    public void createProduct(ProductDto productDto) {
 
 //    ProductDto productDto = new ProductDto(1L, "23456", "98765");
 //            ProductDto productDto2 = new ProductDto(2L, "43", "09876");
 //        List<ProductDto> productDtoList = Arrays.asList(productDto2);
 
+        productRepository.save(productDto);
         List<ProductDto> productDtoList = Arrays.asList(productDto);
 
 

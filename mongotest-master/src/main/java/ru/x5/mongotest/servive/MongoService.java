@@ -6,6 +6,6 @@ import ru.x5.mongotest.model.dto.ProductDto;
 import java.util.List;
 
 public interface MongoService {
-    ProductDto createProduct(ProductDto productDto);
+    void createProduct(ProductDto productDto);
     List<GetProductsListResponse> getAllProduct();
 }
