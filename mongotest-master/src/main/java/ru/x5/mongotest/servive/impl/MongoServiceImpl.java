@@ -1,15 +1,18 @@
 package ru.x5.mongotest.servive.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.x5.mongotest.model.GetProductsListResponse;
 import ru.x5.mongotest.model.dto.ProductDto;
+import ru.x5.mongotest.repository.CisRepository;
 import ru.x5.mongotest.repository.ProductListRepository;
 import ru.x5.mongotest.repository.ProductRepository;
 import ru.x5.mongotest.servive.MongoService;
 
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -18,8 +21,10 @@ import java.util.Random;
 public class MongoServiceImpl implements MongoService {
     private final ProductRepository productRepository;
     private final ProductListRepository productListRepository;
+    private final CisRepository cisRepository;
+
     @Override
-    public void saveProduct(ProductDto productDto) {
+    public ProductDto createProduct(ProductDto productDto) {
 
 //    ProductDto productDto = new ProductDto(1L, "23456", "98765");
 //            ProductDto productDto2 = new ProductDto(2L, "43", "09876");
@@ -58,10 +63,10 @@ public class MongoServiceImpl implements MongoService {
         productRepository.saveAll(productDtoList);
     }
 
+
     @Override
     public List<GetProductsListResponse> getAllProduct() {
-        List<GetProductsListResponse> getProductsListResponseList = productListRepository.findAll();
-        return getProductsListResponseList;
+        return productListRepository.findAll();
     }
 
 

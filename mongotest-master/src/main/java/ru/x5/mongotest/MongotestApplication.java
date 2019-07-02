@@ -19,16 +19,16 @@ import java.util.List;
 import java.util.Random;
 
 @SpringBootApplication
-public class MongotestApplication implements ApplicationRunner {
+public class MongotestApplication {
 
-    @Autowired
-    ProductListRepository productListRepository;
-
-    @Autowired
-    ProductRepository productRepository;
-
-    @Autowired
-    CisRepository cisRepository;
+//    @Autowired
+//    ProductListRepository productListRepository;
+//
+//    @Autowired
+//    ProductRepository productRepository;
+//
+//    @Autowired
+//    CisRepository cisRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(MongotestApplication.class, args);

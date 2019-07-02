@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Cis3 {
+    @Version
     String cisId;
     EnumPackageType packageType;
     String status;
@@ -22,6 +23,4 @@ public class Cis3 {
     String sapDetailId;
     @DBRef
     List<Cis3> cisList;
-    @Version
-    private Long version;
 }
