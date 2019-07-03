@@ -3,6 +3,8 @@ package ru.x5.mongotest.servive.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.x5.mongotest.model.Cis;
@@ -13,6 +15,7 @@ import ru.x5.mongotest.repository.ProductListRepository;
 import ru.x5.mongotest.repository.ProductRepository;
 import ru.x5.mongotest.servive.MongoService;
 
+import javax.management.Query;
 import java.nio.charset.Charset;
 import java.util.*;
 
@@ -35,10 +38,44 @@ public class MongoServiceImpl implements MongoService {
         return productListRepository.findAll();
     }
 
+//    @Override
+//    public Optional<Cis> getCisByCisId(@PathVariable("cisId") String cisId){
+//        return cisRepository.findCisByCisId(cisId);
+//    }
+
     @Override
-    public Optional<Cis> getCisByCisId(@PathVariable("cisId") String cisId){
-        return cisRepository.findCisByCisId(cisId);
+    public Optional<Product> findProductById(Long productId) {
+        return productRepository.findById(productId);
     }
+    @Override
+    public void updateProduct(Product product) {
+        Query searchQuery = new Query(Criteria.where("id").is(product.getProductId());
+        mongoTemplate.upsert(searchQuery, Update.update("gtin", product.getGtin()).set("producerINN", product.getProducerINN())), Cis.class);
+    }
+
+
+//    @Override
+////    public void addOrUpdateClickEvents(UserEvent userEvent) {
+////        StoredEvent storedEvent = new StoredEvent(userEvent.getUserId(), userEvent.getType(), userEvent.getUrl(), userEvent.getBackground(),
+////                System.currentTimeMillis());
+////        try {
+////            updateByMongo(userEvent, storedEvent);
+////        } catch (DuplicateKeyException ex) {
+////            log.error("Ошибка при обновлении: " + ex + ". Выполняем повторное обновление");
+////            updateByMongo(userEvent, storedEvent);
+////        }
+////    }
+////
+////    private void updateByMongo(UserEvent userEvent, StoredEvent storedEvent) {
+////        mongoOperations.upsert(new Query(Criteria.where("queryId").is(userEvent.getQueryId())),
+////                new Update().push("storedEvents", storedEvent), UserEvents.class);
+////    }
+
+//    public class Product {
+//        private Long productId;
+//        private String gtin;
+//        private String producerINN;
+//    }
 
 //    @Override
 //    public Optional<Cis> getProductByCisId(@PathVariable("cisId") String cisId){

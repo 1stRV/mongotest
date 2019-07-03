@@ -10,7 +10,8 @@ import java.util.Optional;
 public interface MongoService {
     void createProduct(Product product);
     List<GetProductsListResponse> getAllProduct();
-    Optional<Cis> getCisByCisId(String cisId);
+//    Optional<Cis> getCisByCisId(Long cisId);
+    Optional<Product> findProductById(Long productId);
 //    void updateCis(Cis cis);
 //    void updateProduct(Product productDto);
 }

@@ -23,15 +23,26 @@ public class MongoTestController {
     }
 
 
-    @GetMapping(value = "/products")
-    public List<GetProductsListResponse> getAllProducts() {
-        return mongoServiceImpl.getAllProduct();
+//    @GetMapping(value = "/products")
+//    public List<GetProductsListResponse> getAllProducts() {
+//        return mongoServiceImpl.getAllProduct();
+//    }
+
+//    @GetMapping(value = "/{cisId}")
+//    public Optional<Cis> getCisByCisid(@PathVariable("cisId") String cisId) {
+//        return mongoServiceImpl.getCisByCisId(cisId);
+//    }
+
+    @GetMapping(value = "/{id}")
+    public Optional<Product> getProductById(@PathVariable("id") Long productId) {
+        return mongoServiceImpl.findProductById(productId);
     }
 
-    @GetMapping(value = "/{cisId}")
-    public Optional<Cis> getCisByCisid(@PathVariable("cisId") String cisId) {
-        return mongoServiceImpl.getCisByCisId(cisId);
+    @PostMapping(value = "/changeproduct")
+    public void updateProduct(@RequestBody Product product) {
+        mongoServiceImpl.createProduct(product);
     }
+
 
 //    @PostMapping(value = "/cis}")
 //    public void updateCis(@RequestBody Cis cis) {

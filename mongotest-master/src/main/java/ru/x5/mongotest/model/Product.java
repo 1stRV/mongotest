@@ -15,8 +15,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document("Product")
 public class Product {
-    private Long id;
+    private Long productId;
     private String gtin;
     private String producerINN;
-
 }
