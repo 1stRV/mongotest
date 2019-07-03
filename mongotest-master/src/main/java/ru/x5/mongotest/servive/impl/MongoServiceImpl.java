@@ -53,10 +53,9 @@ public class MongoServiceImpl implements MongoService {
 
     //Вставить в документ Product новый элемент
     @Override
-    public void updateProduct(Product product) {
-//        Product storedProduct = new Product(product.getId(), product.getTin(),product.getProducerINN());
+    public void updateProducerINNOfProduct(Product product) {
         mongoOperations.upsert(new Query(Criteria.where("id").is(product.getId())),
-                new Update().push("tin",product.getTin()), Product.class);
+                new Update().set("producerINN",product.getProducerINN()),Product.class);
     }
 
 

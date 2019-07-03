@@ -13,5 +13,5 @@ public interface MongoService {
 //    Optional<Cis> getCisByCisId(Long cisId);
     Optional<Product> findProductById(String productId);
 //    void updateCis(Cis cis);
-    void updateProduct(Product product);
+    void updateProducerINNOfProduct(Product product);
 }

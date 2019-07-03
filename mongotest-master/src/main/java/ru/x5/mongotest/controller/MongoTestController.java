@@ -36,8 +36,8 @@ public class MongoTestController {
     }
 
     @PostMapping(value = "/change")
-    public void updateProduct(@RequestBody Product product) {
-        mongoServiceImpl.updateProduct(product);
+    public void updateProducerINNOfProduct(@RequestBody Product product) {
+        mongoServiceImpl.updateProducerINNOfProduct(product);
     }
 
 
