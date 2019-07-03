@@ -1,5 +1,6 @@
 package ru.x5.mongotest.servive;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import ru.x5.mongotest.model.Cis;
 import ru.x5.mongotest.model.GetProductsListResponse;
 import ru.x5.mongotest.model.Product;
@@ -14,4 +15,6 @@ public interface MongoService {
     Optional<Product> findProductById(String productId);
 //    void updateCis(Cis cis);
     void updateProducerINNOfProduct(Product product);
+    void updateStatusOfCis(Cis cis);
+    void createCis(Cis cis);
 }

@@ -3,6 +3,8 @@ package ru.x5.mongotest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.UUID;
+
 @SpringBootApplication
 public class MongotestApplication {
 
@@ -52,9 +54,7 @@ public class MongotestApplication {
 //        cisRepository.saveAll(cisPalletList);
 //    }
 
-//    public static String generateRandom(int lenght) {
-//        byte[] array = new byte[lenght];
-//        new Random().nextBytes(array);
-//        return new String(array, Charset.forName("UTF-8"));
-//    }
+    public static String generateRandom(int lenght) {
+        return UUID.randomUUID().toString().replace("-", "").substring(0, lenght);
+    }
 }

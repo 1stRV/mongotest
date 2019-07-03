@@ -23,6 +23,7 @@ public class Cis3 {
     String status;
     String sapHeaderId;
     String sapDetailId;
+
     @DBRef
-    List<Cis3> cisList;
+    Cis2 cisList;
 }

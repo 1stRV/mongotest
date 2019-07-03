@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+import ru.x5.mongotest.model.Cis;
 import ru.x5.mongotest.model.GetProductsListResponse;
 import ru.x5.mongotest.model.Product;
 import ru.x5.mongotest.repository.CisRepository;
@@ -30,36 +31,44 @@ public class MongoServiceImpl implements MongoService {
     }
 
     @Override
+    public void createCis(Cis cis) {
+        cisRepository.save(cis);
+    }
+
+    @Override
     public List<GetProductsListResponse> getAllProduct() {
         return productListRepository.findAll();
     }
-
-//    @Override
-//    public Optional<Cis> getCisByCisId(@PathVariable("cisId") String cisId){
-//        return cisRepository.findCisByCisId(cisId);
-//    }
 
     @Override
     public Optional<Product> findProductById(String id) {
         return productRepository.findById(id);
     }
 
+    @Override
+    public void updateProducerINNOfProduct(Product product) {
+        mongoOperations.upsert(new Query(Criteria.where("id").is(product.getId())),
+                new Update().set("producerINN", product.getProducerINN()), Product.class);
+    }
+
+    @Override
+    public void updateStatusOfCis(Cis cis) {
+        mongoOperations.upsert(new Query(Criteria.where("id").is(cis.getCisId())),
+                new Update().set("status", cis.getStatus()), Cis.class);
+    }
+
+
+
+//    @Override
+//    public Optional<Cis> getCisByCisId(@PathVariable("cisId") String cisId){
+//        return cisRepository.findCisByCisId(cisId);
+//    }
 //    @Override
 //    public void updateProduct(Product product) {
 //        Product storedProduct = new Product(product.getId(), product.getTin(),product.getProducerINN());
 //        mongoOperations.upsert(new Query(Criteria.where("id").is(product.getId())),
 //                new Update().push("storedProduct", storedProduct), Product.class);
 //    }
-
-    //Вставить в документ Product новый элемент
-    @Override
-    public void updateProducerINNOfProduct(Product product) {
-        mongoOperations.upsert(new Query(Criteria.where("id").is(product.getId())),
-                new Update().set("producerINN",product.getProducerINN()),Product.class);
-    }
-
-
-
 
 //    @Override
 //    public void updateProduct(Product product) {

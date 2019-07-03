@@ -3,6 +3,7 @@ package ru.x5.mongotest.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ru.x5.mongotest.model.Cis;
 import ru.x5.mongotest.model.Product;
 import ru.x5.mongotest.servive.impl.MongoServiceImpl;
 
@@ -19,8 +20,33 @@ public class MongoTestController {
         mongoServiceImpl.createProduct(product);
     }
 
+    @PostMapping(value = "/product")
+    public void createCis(@RequestBody Cis cis) {
+        mongoServiceImpl.createCis(cis);
+    }
 
-//    @GetMapping(value = "/products")
+    @GetMapping(value = "/{id}")
+    public Optional<Product> getProductById(@PathVariable("id") String id) {
+        return mongoServiceImpl.findProductById(id);
+    }
+
+    @PostMapping(value = "/producerINN")
+    public void updateProducerINNOfProduct(@RequestBody Product product) {
+        mongoServiceImpl.updateProducerINNOfProduct(product);
+    }
+
+    @PostMapping(value = "/status")
+    public void updateStatusOfCis(@RequestBody Cis cis) {
+        mongoServiceImpl.updateStatusOfCis(cis);
+    }
+
+
+//    @PostMapping(value = "/cis}")
+//    public void updateCis(@RequestBody Cis cis) {
+//        return mongoServiceImpl.updateCis(cis);
+//    }
+
+    //    @GetMapping(value = "/products")
 //    public List<GetProductsListResponse> getAllProducts() {
 //        return mongoServiceImpl.getAllProduct();
 //    }
@@ -28,21 +54,5 @@ public class MongoTestController {
 //    @GetMapping(value = "/{cisId}")
 //    public Optional<Cis> getCisByCisid(@PathVariable("cisId") String cisId) {
 //        return mongoServiceImpl.getCisByCisId(cisId);
-//    }
-
-    @GetMapping(value = "/{id}")
-    public Optional<Product> getProductById(@PathVariable("id") String id) {
-        return mongoServiceImpl.findProductById(id);
-    }
-
-    @PostMapping(value = "/change")
-    public void updateProducerINNOfProduct(@RequestBody Product product) {
-        mongoServiceImpl.updateProducerINNOfProduct(product);
-    }
-
-
-//    @PostMapping(value = "/cis}")
-//    public void updateCis(@RequestBody Cis cis) {
-//        return mongoServiceImpl.updateCis(cis);
 //    }
 }
