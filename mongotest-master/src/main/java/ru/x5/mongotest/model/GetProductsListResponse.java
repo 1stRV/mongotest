@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import ru.x5.mongotest.model.dto.ProductDto;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ import java.util.List;
 public class GetProductsListResponse {
     @JsonProperty("results")
     @DBRef
-    private List<ProductDto> productDtoList;
+    private List<Product> productDtoList;
     private Integer total;
     private Integer errorCode;
     private Boolean last;

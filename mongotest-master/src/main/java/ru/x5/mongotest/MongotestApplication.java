@@ -1,22 +1,7 @@
 package ru.x5.mongotest;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.x5.mongotest.model.Cis;
-import ru.x5.mongotest.model.GetProductsListResponse;
-import ru.x5.mongotest.model.dto.ProductDto;
-import ru.x5.mongotest.repository.CisRepository;
-import ru.x5.mongotest.repository.ProductListRepository;
-import ru.x5.mongotest.repository.ProductRepository;
-
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
 @SpringBootApplication
 public class MongotestApplication {
@@ -36,9 +21,9 @@ public class MongotestApplication {
 
 //    @Override
 //    public void run(ApplicationArguments args) throws Exception {
-//        ProductDto productDto = new ProductDto(1L, "23456", "98765");
-//        ProductDto productDto2 = new ProductDto(2L, "43", "09876");
-//        List<ProductDto> productDtoList = Arrays.asList(productDto2);
+//        Product productDto = new Product(1L, "23456", "98765");
+//        Product productDto2 = new Product(2L, "43", "09876");
+//        List<Product> productDtoList = Arrays.asList(productDto2);
 //        productRepository.saveAll(productDtoList);
 //        GetProductsListResponse productsListResponse =
 //                GetProductsListResponse.builder().errorCode(232).last(true).total(10)

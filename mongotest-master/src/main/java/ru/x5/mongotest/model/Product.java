@@ -1,4 +1,4 @@
-package ru.x5.mongotest.model.dto;
+package ru.x5.mongotest.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document("Product")
-public class ProductDto {
+public class Product {
     private Long id;
     private String gtin;
     private String producerINN;
