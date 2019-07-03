@@ -26,5 +26,4 @@ public class GetProductsListResponse {
     private Integer total;
     private Integer errorCode;
     private Boolean last;
-
 }

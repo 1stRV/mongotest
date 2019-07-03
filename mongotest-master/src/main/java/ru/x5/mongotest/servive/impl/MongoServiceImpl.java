@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
-import ru.x5.mongotest.model.Cis;
+import ru.x5.mongotest.model.CisBox;
 import ru.x5.mongotest.model.GetProductsListResponse;
 import ru.x5.mongotest.model.Product;
 import ru.x5.mongotest.repository.CisRepository;
@@ -31,8 +31,8 @@ public class MongoServiceImpl implements MongoService {
     }
 
     @Override
-    public void createCis(Cis cis) {
-        cisRepository.save(cis);
+    public void createCisBox(CisBox cisBox) {
+        cisRepository.save(cisBox);
     }
 
     @Override
@@ -52,15 +52,15 @@ public class MongoServiceImpl implements MongoService {
     }
 
     @Override
-    public void updateStatusOfCis(Cis cis) {
-        mongoOperations.upsert(new Query(Criteria.where("id").is(cis.getCisId())),
-                new Update().set("status", cis.getStatus()), Cis.class);
+    public void updateStatusOfCis(CisBox cisBox) {
+        mongoOperations.upsert(new Query(Criteria.where("id").is(cisBox.getCisId())),
+                new Update().set("status", cisBox.getStatus()), CisBox.class);
     }
 
 
 
 //    @Override
-//    public Optional<Cis> getCisByCisId(@PathVariable("cisId") String cisId){
+//    public Optional<CisBox> getCisByCisId(@PathVariable("cisId") String cisId){
 //        return cisRepository.findCisByCisId(cisId);
 //    }
 //    @Override
@@ -106,35 +106,35 @@ public class MongoServiceImpl implements MongoService {
 //    }
 
 //    @Override
-//    public Optional<Cis> getProductByCisId(@PathVariable("cisId") String cisId){
+//    public Optional<CisBox> getProductByCisId(@PathVariable("cisId") String cisId){
 //        return cisRepository.findCisByCisId(cisId);
 //    }
 
 //    @Override
-////    public void updateCis(Cis cis) {
+////    public void updateCis(CisBox cis) {
 ////        Query searchQuery = new Query(Criteria.where("id").is(cis.getCisId());
-////        mongoTemplate.upsert(searchQuery, Update.update("sapHeaderId", cis.getSapHeaderId()).set("sapDetailId", cis.getSapDetailId()).set()), Cis.class);
+////        mongoTemplate.upsert(searchQuery, Update.update("sapHeaderId", cis.getSapHeaderId()).set("sapDetailId", cis.getSapDetailId()).set()), CisBox.class);
 ////    }
 
 //    @Override
 //    public void updateProduct(Product productDto) {
 //        Query searchQuery = new Query(Criteria.where("id").is(cis.getCisId());
-//        mongoTemplate.upsert(searchQuery, Update.update("sapHeaderId", cis.getSapHeaderId()).set("sapDetailId", cis.getSapDetailId()).set()), Cis.class);
+//        mongoTemplate.upsert(searchQuery, Update.update("sapHeaderId", cis.getSapHeaderId()).set("sapDetailId", cis.getSapDetailId()).set()), CisBox.class);
 //    }
 
 //    @Override
-//    public void updateCis(Cis cis) {
+//    public void updateCis(CisBox cis) {
 //        Query searchQuery = new Query(Criteria.where("id").is(cis.getCisId());
-//        mongoTemplate.upsert(searchQuery, Update.update("sapHeaderId", cis.getSapHeaderId()).set("sapDetailId", cis.getSapDetailId()).set(...)), Cis.class);
+//        mongoTemplate.upsert(searchQuery, Update.update("sapHeaderId", cis.getSapHeaderId()).set("sapDetailId", cis.getSapDetailId()).set(...)), CisBox.class);
 //    }
 
-//    public class Cis {
+//    public class CisBox {
 //        @Version
 //        String cisId;
 //        EnumPackageType packageType;
 //        String status;
 //        String sapHeaderId;
 //        String sapDetailId;
-//        List<Cis> cisList;
+//        List<CisBox> cisList;
 //    }
 }

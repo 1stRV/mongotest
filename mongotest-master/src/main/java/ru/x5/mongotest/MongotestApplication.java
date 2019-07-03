@@ -35,21 +35,21 @@ public class MongotestApplication {
 //        System.out.println(getProductsListResponseList);
 //        productListRepository.save(productsListResponse);
 //        String status = "CIS_STATUS";
-//        List<Cis> cisPalletList = new ArrayList<>();
+//        List<CisBox> cisPalletList = new ArrayList<>();
 //        for (int i = 0; i < 38; i++) {
-//            List<Cis> cisBoxList = new ArrayList<>();
+//            List<CisBox> cisBoxList = new ArrayList<>();
 //            for (int j = 0; j < 25; j++) {
-//                List<Cis> cisBlockList = new ArrayList<>();
+//                List<CisBox> cisBlockList = new ArrayList<>();
 //                for (int k = 0; k < 50; k++) {
-//                    List<Cis> cisPackList = new ArrayList<>();
+//                    List<CisBox> cisPackList = new ArrayList<>();
 //                    for (int l = 0; l < 10; l++) {
-//                        cisPackList.add(Cis.builder().cisId(generateRandom(29)).status(status).build());
+//                        cisPackList.add(CisBox.builder().cisId(generateRandom(29)).status(status).build());
 //                    }
-//                    cisBlockList.add(Cis.builder().cisId(generateRandom(31)).cisList(cisPackList).status(status).build());
+//                    cisBlockList.add(CisBox.builder().cisId(generateRandom(31)).cisList(cisPackList).status(status).build());
 //                }
-//                cisBoxList.add(Cis.builder().cisList(cisBlockList).cisId(generateRandom(29)).status(status).build());
+//                cisBoxList.add(CisBox.builder().cisList(cisBlockList).cisId(generateRandom(29)).status(status).build());
 //            }
-//            cisPalletList.add(Cis.builder().cisList(cisBoxList).cisId(generateRandom(32)).status(status).build());
+//            cisPalletList.add(CisBox.builder().cisList(cisBoxList).cisId(generateRandom(32)).status(status).build());
 //        }
 //        cisRepository.saveAll(cisPalletList);
 //    }

@@ -3,7 +3,7 @@ package ru.x5.mongotest.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.x5.mongotest.model.Cis;
+import ru.x5.mongotest.model.CisBox;
 import ru.x5.mongotest.model.Product;
 import ru.x5.mongotest.servive.impl.MongoServiceImpl;
 
@@ -21,8 +21,8 @@ public class MongoTestController {
     }
 
     @PostMapping(value = "/product")
-    public void createCis(@RequestBody Cis cis) {
-        mongoServiceImpl.createCis(cis);
+    public void createCis(@RequestBody CisBox cisBox) {
+        mongoServiceImpl.createCis(cisBox);
     }
 
     @GetMapping(value = "/{id}")
@@ -36,13 +36,13 @@ public class MongoTestController {
     }
 
     @PostMapping(value = "/status")
-    public void updateStatusOfCis(@RequestBody Cis cis) {
-        mongoServiceImpl.updateStatusOfCis(cis);
+    public void updateStatusOfCis(@RequestBody CisBox cisBox) {
+        mongoServiceImpl.updateStatusOfCis(cisBox);
     }
 
 
 //    @PostMapping(value = "/cis}")
-//    public void updateCis(@RequestBody Cis cis) {
+//    public void updateCis(@RequestBody CisBox cis) {
 //        return mongoServiceImpl.updateCis(cis);
 //    }
 
@@ -52,7 +52,7 @@ public class MongoTestController {
 //    }
 
 //    @GetMapping(value = "/{cisId}")
-//    public Optional<Cis> getCisByCisid(@PathVariable("cisId") String cisId) {
+//    public Optional<CisBox> getCisByCisid(@PathVariable("cisId") String cisId) {
 //        return mongoServiceImpl.getCisByCisId(cisId);
 //    }
 }

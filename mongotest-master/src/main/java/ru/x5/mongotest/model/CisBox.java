@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,14 +14,17 @@ import ru.x5.mongotest.type.EnumPackageType;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document("Cis2")
-public class Cis2 {
+@Document("CisBox")
+public class CisBox {
     @Version
+    String version;
+
     String cisId;
-    String status;
     EnumPackageType packageType;
+    String status;
     String sapHeaderId;
     String sapDetailId;
+
     @DBRef
-    Cis parentCis;
+    CisPallet parentCisPallet;
 }
