@@ -1,13 +1,11 @@
 package ru.x5.mongotest.servive.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import ru.x5.mongotest.model.Cis;
 import ru.x5.mongotest.model.GetProductsListResponse;
 import ru.x5.mongotest.model.Product;
 import ru.x5.mongotest.repository.CisRepository;
@@ -15,9 +13,8 @@ import ru.x5.mongotest.repository.ProductListRepository;
 import ru.x5.mongotest.repository.ProductRepository;
 import ru.x5.mongotest.servive.MongoService;
 
-import javax.management.Query;
-import java.nio.charset.Charset;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +22,7 @@ public class MongoServiceImpl implements MongoService {
     private final ProductRepository productRepository;
     private final ProductListRepository productListRepository;
     private final CisRepository cisRepository;
-    @Autowired
-    MongoTemplate mongoTemplate;
+    private final MongoOperations mongoOperations;
 
     @Override
     public void createProduct(Product product) {
@@ -44,15 +40,39 @@ public class MongoServiceImpl implements MongoService {
 //    }
 
     @Override
-    public Optional<Product> findProductById(Long productId) {
-        return productRepository.findById(productId);
-    }
-    @Override
-    public void updateProduct(Product product) {
-        Query searchQuery = new Query(Criteria.where("id").is(product.getProductId());
-        mongoTemplate.upsert(searchQuery, Update.update("gtin", product.getGtin()).set("producerINN", product.getProducerINN())), Cis.class);
+    public Optional<Product> findProductById(String id) {
+        return productRepository.findById(id);
     }
 
+//    @Override
+//    public void updateProduct(Product product) {
+//        Product storedProduct = new Product(product.getId(), product.getTin(),product.getProducerINN());
+//        mongoOperations.upsert(new Query(Criteria.where("id").is(product.getId())),
+//                new Update().push("storedProduct", storedProduct), Product.class);
+//    }
+
+    //Вставить в документ Product новый элемент
+    @Override
+    public void updateProduct(Product product) {
+//        Product storedProduct = new Product(product.getId(), product.getTin(),product.getProducerINN());
+        mongoOperations.upsert(new Query(Criteria.where("id").is(product.getId())),
+                new Update().push("tin",product.getTin()), Product.class);
+    }
+
+
+
+
+//    @Override
+//    public void updateProduct(Product product) {
+//        Product storedProduct = new Product(product.getProductId(),product.getTin(),product.getProducerINN());
+//        mongoOperations.upsert(new Query(Criteria.where("productId").is(product.getProductId())),
+//                new Update().push("storedProduct", storedProduct), Product.class);
+//    }
+
+//    private void updateByMongo(Product product) {
+//        mongoOperations.upsert(new Query(Criteria.where("queryId").is(userEvent.getQueryId())),
+//                new Update().push("storedEvents", storedEvent), UserEvents.class);
+//    }
 
 //    @Override
 ////    public void addOrUpdateClickEvents(UserEvent userEvent) {

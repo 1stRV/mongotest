@@ -3,12 +3,9 @@ package ru.x5.mongotest.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.x5.mongotest.model.Cis;
-import ru.x5.mongotest.model.GetProductsListResponse;
 import ru.x5.mongotest.model.Product;
 import ru.x5.mongotest.servive.impl.MongoServiceImpl;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -34,13 +31,13 @@ public class MongoTestController {
 //    }
 
     @GetMapping(value = "/{id}")
-    public Optional<Product> getProductById(@PathVariable("id") Long productId) {
-        return mongoServiceImpl.findProductById(productId);
+    public Optional<Product> getProductById(@PathVariable("id") String id) {
+        return mongoServiceImpl.findProductById(id);
     }
 
-    @PostMapping(value = "/changeproduct")
+    @PostMapping(value = "/change")
     public void updateProduct(@RequestBody Product product) {
-        mongoServiceImpl.createProduct(product);
+        mongoServiceImpl.updateProduct(product);
     }
 
 

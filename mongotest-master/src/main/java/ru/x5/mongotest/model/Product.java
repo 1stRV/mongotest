@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -15,7 +16,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document("Product")
 public class Product {
-    private Long productId;
-    private String gtin;
+//    @Version
+    private String id;
+    private String tin;
     private String producerINN;
 }
