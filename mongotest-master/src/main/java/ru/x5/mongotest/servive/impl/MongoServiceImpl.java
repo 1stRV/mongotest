@@ -6,9 +6,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
-import ru.x5.mongotest.model.CisBox;
-import ru.x5.mongotest.model.GetProductsListResponse;
-import ru.x5.mongotest.model.Product;
+import ru.x5.mongotest.model.*;
 import ru.x5.mongotest.repository.CisRepository;
 import ru.x5.mongotest.repository.ProductListRepository;
 import ru.x5.mongotest.repository.ProductRepository;
@@ -36,6 +34,11 @@ public class MongoServiceImpl implements MongoService {
     }
 
     @Override
+    public void createCisPack(CisPack cisPack) {
+
+    }
+
+    @Override
     public List<GetProductsListResponse> getAllProduct() {
         return productListRepository.findAll();
     }
@@ -57,6 +60,10 @@ public class MongoServiceImpl implements MongoService {
                 new Update().set("status", cisBox.getStatus()), CisBox.class);
     }
 
+    @Override
+    public void createCisPallet(CisPallet cisPallet) {
+
+    }
 
 
 //    @Override

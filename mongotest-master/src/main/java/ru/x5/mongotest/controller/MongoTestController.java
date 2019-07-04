@@ -20,10 +20,7 @@ public class MongoTestController {
         mongoServiceImpl.createProduct(product);
     }
 
-    @PostMapping(value = "/product")
-    public void createCis(@RequestBody CisBox cisBox) {
-        mongoServiceImpl.createCis(cisBox);
-    }
+
 
     @GetMapping(value = "/{id}")
     public Optional<Product> getProductById(@PathVariable("id") String id) {
