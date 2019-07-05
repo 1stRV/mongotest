@@ -1,6 +1,7 @@
 package ru.x5.mongotest.servive.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -14,7 +15,7 @@ import ru.x5.mongotest.servive.MongoService;
 
 import java.util.List;
 import java.util.Optional;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MongoServiceImpl implements MongoService {
@@ -44,10 +45,26 @@ public class MongoServiceImpl implements MongoService {
     }
 
     @Override
-    public Optional<Product> findProductById(String id) {
-        return productRepository.findById(id);
+    public Product findProductById(String id) {
+        Optional<Product> product = productRepository.findById(id);
+        if(product.isPresent()){
+            return product.orElse(new Product());
+            log.debug("Из черного списка было успешно удалено слово = " + word);
+        }
+//        return productRepository.findById(id);
     }
 
+
+//    public void deleteWord(String id, String word) {
+//        Optional<Dictionary> dictionary = dictionaryRepository.findById(id);
+//        if (dictionary.isPresent()) {
+//            mongoOperations.upsert(new Query(Criteria.where("id").is(id)),
+//                    new Update().pull("words", word).inc("wordCount", -1), Dictionary.class);
+//            log.debug("Из черного списка было успешно удалено слово = " + word);
+//        } else {
+//            throw new DictionayDoesNotExistException("Словарь с id = " + id + " не найден!");
+//        }
+//    }
     @Override
     public void updateProducerINNOfProduct(Product product) {
         mongoOperations.upsert(new Query(Criteria.where("id").is(product.getId())),
