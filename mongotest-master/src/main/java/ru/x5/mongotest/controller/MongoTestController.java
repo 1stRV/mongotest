@@ -3,8 +3,7 @@ package ru.x5.mongotest.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.x5.mongotest.model.CisBox;
-import ru.x5.mongotest.model.Product;
+import ru.x5.mongotest.model.*;
 import ru.x5.mongotest.servive.impl.MongoServiceImpl;
 
 import java.util.Optional;
@@ -16,12 +15,32 @@ public class MongoTestController {
     private final MongoServiceImpl mongoServiceImpl;
 
     @PostMapping(value = "/product")
-    public void createProduct(@RequestBody Product product) {
-        mongoServiceImpl.createProduct(product);
+    public Product createProduct(@RequestBody Product product) {
+        return mongoServiceImpl.createProduct(product);
+    }
+
+    @PostMapping(value = "/cisPack")
+    public CisPack createCisPack(@RequestBody CisPack cisPack) {
+        return mongoServiceImpl.createCisPack(cisPack);
+    }
+
+    @PostMapping(value = "/cisBlock")
+    public CisBlock createCisBlock(@RequestBody CisBlock cisBlock) {
+        return mongoServiceImpl.createCisBlock(cisBlock);
+    }
+
+    @PostMapping(value = "/cisBox")
+    public CisBox createCisBox(@RequestBody CisBox cisBox) {
+        return mongoServiceImpl.createCisBox(cisBox);
+    }
+
+    @PostMapping(value = "/cisPallet")
+    public CisPallet createCisPallet(@RequestBody CisPallet cisPallet) {
+        return mongoServiceImpl.createCisPallet(cisPallet);
     }
 
     @GetMapping(value = "/{id}")
-    public Optional<Product> getProductById(@PathVariable("id") String id) {
+    public Product getProductById(@PathVariable("id") String id) {
         return mongoServiceImpl.findProductById(id);
     }
 
@@ -30,10 +49,12 @@ public class MongoTestController {
         mongoServiceImpl.updateProducerINNOfProduct(product);
     }
 
-    @PostMapping(value = "/status")
-    public void updateStatusOfCis(@RequestBody CisBox cisBox) {
-        mongoServiceImpl.updateStatusOfCis(cisBox);
-    }
+
+
+//    @PostMapping(value = "/status")
+//    public void updateStatusOfCis(@RequestBody CisBox cisBox) {
+//        mongoServiceImpl.updateStatusOfCis(cisBox);
+//    }
 
 //    @PostMapping(value = "/cis}")
 //    public void updateCis(@RequestBody CisBox cis) {

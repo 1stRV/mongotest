@@ -4,85 +4,97 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+import ru.x5.mongotest.exception.ProductDoesNotExistException;
 import ru.x5.mongotest.model.*;
-import ru.x5.mongotest.repository.CisRepository;
-import ru.x5.mongotest.repository.ProductListRepository;
-import ru.x5.mongotest.repository.ProductRepository;
+import ru.x5.mongotest.repository.*;
 import ru.x5.mongotest.servive.MongoService;
+import org.springframework.data.mongodb.core.query.Query;
 
-import java.util.List;
-import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class MongoServiceImpl implements MongoService {
     private final ProductRepository productRepository;
-    private final ProductListRepository productListRepository;
-    private final CisRepository cisRepository;
+    private final CisPackRepository cisPackRepository;
+    private final CisBlockRepository cisBlockRepository;
+    private final CisBoxRepository cisBoxRepository;
+    private final CisPalletRepository cisPalletRepository;
+
+
     private final MongoOperations mongoOperations;
 
     @Override
-    public void createProduct(Product product) {
-        productRepository.save(product);
+    public Product createProduct(Product product) {
+        return productRepository.save(product);
     }
 
     @Override
-    public void createCisBox(CisBox cisBox) {
-        cisRepository.save(cisBox);
+    public CisPack createCisPack(CisPack cisPack) {
+        return cisPackRepository.save(cisPack);
     }
 
     @Override
-    public void createCisPack(CisPack cisPack) {
-
+    public CisBlock createCisBlock(CisBlock cisBlock) {
+        return cisBlockRepository.save(cisBlock);
     }
 
     @Override
-    public List<GetProductsListResponse> getAllProduct() {
-        return productListRepository.findAll();
+    public CisBox createCisBox(CisBox cisBox) {
+        return cisBoxRepository.save(cisBox);
+    }
+
+    @Override
+    public CisPallet createCisPallet(CisPallet cisPallet) {
+        return cisPalletRepository.save(cisPallet);
     }
 
     @Override
     public Product findProductById(String id) {
-        Optional<Product> product = productRepository.findById(id);
-        if(product.isPresent()){
-            return product.orElse(new Product());
-            log.debug("Из черного списка было успешно удалено слово = " + word);
-        }
-//        return productRepository.findById(id);
+        return productRepository.findById(id).orElseThrow(() -> new ProductDoesNotExistException("Продукт с id = " + id + " не найден!"));
     }
 
-
-//    public void deleteWord(String id, String word) {
-//        Optional<Dictionary> dictionary = dictionaryRepository.findById(id);
-//        if (dictionary.isPresent()) {
-//            mongoOperations.upsert(new Query(Criteria.where("id").is(id)),
-//                    new Update().pull("words", word).inc("wordCount", -1), Dictionary.class);
-//            log.debug("Из черного списка было успешно удалено слово = " + word);
-//        } else {
-//            throw new DictionayDoesNotExistException("Словарь с id = " + id + " не найден!");
-//        }
-//    }
     @Override
     public void updateProducerINNOfProduct(Product product) {
         mongoOperations.upsert(new Query(Criteria.where("id").is(product.getId())),
                 new Update().set("producerINN", product.getProducerINN()), Product.class);
     }
 
-    @Override
-    public void updateStatusOfCis(CisBox cisBox) {
-        mongoOperations.upsert(new Query(Criteria.where("id").is(cisBox.getCisId())),
-                new Update().set("status", cisBox.getStatus()), CisBox.class);
-    }
-
-    @Override
-    public void createCisPallet(CisPallet cisPallet) {
-
-    }
+//    @Override
+//    public void updateStatusOfCis(CisBox cisBox) {
+//        mongoOperations.upsert(new Query(Criteria.where("id").is(cisBox.getCisId())),
+//                new Update().set("status", cisBox.getStatus()), CisBox.class);
+//    }
 
 
+//    @Override
+//    public Dictionary importDictionary(String name, List<String> words) {
+//        if (!name.isEmpty() && !words.isEmpty()) {
+//            Dictionary dictionary = new Dictionary();
+//            dictionary.setName(name);
+//            dictionary.setWords(words);
+//            dictionary.setWordCount(words.size());
+//            dictionary.setUpdated(LocalDateTime.now());
+//            try {
+//                return dictionaryRepository.save(dictionary);
+//            } catch (DuplicateKeyException ex) {
+//                throw new DictionaryUniqueNameException("Словарь с именем " + name + " уже существует!");
+//            }
+//        } else {
+//            if (name.isEmpty()){
+//                throw new DictionaryDataException("Наименование словаря не заполнено!");
+//            } else {
+//                throw new DictionaryDataException("Загружаемый файл пуст или вы пытаетесь згрузить файл с не поддерживаемой кодировкой!");
+//            }
+//        }
+//    }
+
+
+//    @Override
+//    public List<GetProductsListResponse> getAllProduct() {
+//        return productListRepository.findAll();
+//    }
 //    @Override
 //    public Optional<CisBox> getCisByCisId(@PathVariable("cisId") String cisId){
 //        return cisRepository.findCisByCisId(cisId);
