@@ -44,12 +44,30 @@ public class MongoTestController {
         return mongoServiceImpl.findProductById(id);
     }
 
+    @GetMapping(value = "/cisPack/{id}")
+    public CisPack findCisPackByCisId(@PathVariable("id") String id) {
+        return mongoServiceImpl.findCisPackByCisId(id);
+    }
+
+    @GetMapping(value = "/cisBlock/{id}")
+    public CisBlock findCisBlockByCisId(@PathVariable("id") String id) {
+        return mongoServiceImpl.findCisBlockkByCisId(id);
+    }
+
+    @GetMapping(value = "/cisBox/{id}")
+    public CisBox findCisBoxByCisId(@PathVariable("id") String id) {
+        return mongoServiceImpl.findCisBoxkByCisId(id);
+    }
+
+    @GetMapping(value = "/cisBox/{id}")
+    public CisPallet findCisPalletByCisId(@PathVariable("id") String id) {
+        return mongoServiceImpl.findCisPalletkByCisId(id);
+    }
+
     @PostMapping(value = "/producerINN")
     public void updateProducerINNOfProduct(@RequestBody Product product) {
         mongoServiceImpl.updateProducerINNOfProduct(product);
     }
-
-
 
 //    @PostMapping(value = "/status")
 //    public void updateStatusOfCis(@RequestBody CisBox cisBox) {

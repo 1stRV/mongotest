@@ -20,5 +20,9 @@ public interface MongoService {
 //    Optional<CisBox> getCisByCisId(Long cisId);
 ////    void updateCis(CisBox cis);
 
-//    void updateStatusOfCis(CisBox cisBox);
+    //    void updateStatusOfCis(CisBox cisBox);
+    CisPack findCisPackByCisId(String cisId);
+    CisBlock findCisBlockkByCisId(String cisId);
+    CisBox findCisBoxkByCisId(String cisId);
+    CisPallet findCisPalletkByCisId(String cisId);
 }

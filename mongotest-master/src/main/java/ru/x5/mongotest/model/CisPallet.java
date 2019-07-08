@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.x5.mongotest.type.EnumPackageType;
@@ -17,6 +18,7 @@ public class CisPallet {
     @Version
     String version;
 
+    @Id
     String cisId;
     EnumPackageType packageType;
     String status;

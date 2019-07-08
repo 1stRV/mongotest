@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+import ru.x5.mongotest.exception.CisDoesNotExistException;
 import ru.x5.mongotest.exception.ProductDoesNotExistException;
 import ru.x5.mongotest.model.*;
 import ru.x5.mongotest.repository.*;
@@ -54,6 +55,29 @@ public class MongoServiceImpl implements MongoService {
     public Product findProductById(String id) {
         return productRepository.findById(id).orElseThrow(() -> new ProductDoesNotExistException("Продукт с id = " + id + " не найден!"));
     }
+
+    @Override
+    public CisPack findCisPackByCisId(String cisId) {
+        return cisPackRepository.findById(cisId).orElseThrow(() -> new CisDoesNotExistException("CisPack с id = " + cisId + " не найден!"));
+    }
+
+    @Override
+    public CisBlock findCisBlockkByCisId(String cisId) {
+        return cisBlockRepository.findById(cisId).orElseThrow(() -> new CisDoesNotExistException("CisBlock с id = " + cisId + " не найден!"));
+    }
+
+    @Override
+    public CisBox findCisBoxkByCisId(String cisId) {
+        return cisBoxRepository.findById(cisId).orElseThrow(() -> new CisDoesNotExistException("CisBox с id = " + cisId + " не найден!"));
+    }
+
+    @Override
+    public CisPallet findCisPalletkByCisId(String cisId) {
+        return cisPalletRepository.findById(cisId).orElseThrow(() -> new CisDoesNotExistException("CisPallet с id = " + cisId + " не найден!"));
+    }
+
+
+
 
     @Override
     public void updateProducerINNOfProduct(Product product) {

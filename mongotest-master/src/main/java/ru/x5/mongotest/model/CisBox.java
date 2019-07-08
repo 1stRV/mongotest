@@ -19,6 +19,7 @@ public class CisBox {
     @Version
     String version;
 
+    @Id
     String cisId;
     EnumPackageType packageType;
     String status;
